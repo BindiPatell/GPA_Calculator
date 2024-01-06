@@ -1,16 +1,17 @@
 public class Course {
+
     private String courseName;
     private int credits;
     private Grade grade;
+    private boolean weighted; // New field
 
-    // Constructor
-    public Course(String courseName, int credits, Grade grade) {
+    public Course(String courseName, int credits, Grade grade, boolean weighted) {
         this.courseName = courseName;
         this.credits = credits;
         this.grade = grade;
+        this.weighted = weighted; // Set weighted field
     }
 
-    // Getter methods
     public String getCourseName() {
         return courseName;
     }
@@ -22,4 +23,9 @@ public class Course {
     public Grade getGrade() {
         return grade;
     }
+
+    public boolean isWeighted() {
+        return weighted;
+    }
+
 }
