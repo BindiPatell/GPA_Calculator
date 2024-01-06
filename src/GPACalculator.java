@@ -2,13 +2,16 @@ import java.util.*;
 
 public class GPACalculator {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
 
-        final Map<String, Semester> semestersMap = new HashMap<>();
+        Map<String, Semester> semestersMap = new HashMap<>();
 
-        // Get input for multiple semesters
         while (true) {
             System.out.print("Enter semester name (or 'done' to finish): ");
+            if (!scanner.hasNextLine()) {
+                break;
+            }
             String semesterName = scanner.nextLine();
 
             if (semesterName.equalsIgnoreCase("done")) {
@@ -29,7 +32,6 @@ public class GPACalculator {
             // Create a semester
             Semester semester = new Semester(semesterName);
 
-            // Get input for courses
             while (true) {
                 System.out.print("Enter course name (or 'done' to finish): ");
                 String courseName = scanner.nextLine();
@@ -65,8 +67,12 @@ public class GPACalculator {
                     }
                 }
 
+                // Updated weighted course logic
+                System.out.print("Is this a weighted course? (y/n): ");
+                boolean weighted = scanner.nextLine().equalsIgnoreCase("y");
+
                 // Create a course and add it to the semester
-                Course course = new Course(courseName, credits, grade);
+                Course course = new Course(courseName, credits, grade, weighted);
                 semester.addCourse(course);
             }
 
